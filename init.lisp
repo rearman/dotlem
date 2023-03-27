@@ -15,20 +15,19 @@
   (move-to-end-of-line)
   (lem/language-mode:newline-and-indent n))
 
-(define-key *global-keymap* "C-o" 'open-line-below)
-
 (define-command open-line-above (&optional (n 1)) ("p")
   "vi-like open command, but without vi-mode."
   (move-to-beginning-of-line)
   (open-line n))
 
+(define-key *global-keymap* "C-o" 'open-line-below)
 (define-key *global-keymap* "M-C-o" 'open-line-above)
 
-(define-command kill-bword-or-region (&optional beg end (n 1)) ("r")
+(define-command kill-bword-or-region (&optional (n 1)) ("p")
   "Kill region if active, otherwise back n words."
-  (if (and (buffer-mark-p (current-buffer)))
-      (kill-region (region-beginning) (region-end))
-      (backward-delete-word n)))
+  (if (buffer-mark-p (current-buffer))
+         (kill-region (region-beginning) (region-end))
+        (backward-delete-word n)))
 
 (define-key *global-keymap* "C-w" 'kill-bword-or-region)
 
@@ -42,7 +41,5 @@
 (define-key *global-keymap* "C-\\" 'redo)
 (define-key *global-keymap* "Home" 'move-to-beginning-of-buffer)
 (define-key *global-keymap* "End" 'move-to-end-of-buffer)
-
-(define-key *global-keymap* "M-C-z" 'lem-lisp-mode:lisp-eval-region)
 
 (load-theme "emacs-light")

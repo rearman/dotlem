@@ -42,4 +42,9 @@
 (define-key *global-keymap* "Home" 'move-to-beginning-of-buffer)
 (define-key *global-keymap* "End" 'move-to-end-of-buffer)
 
-(load-theme "emacs-light")
+
+(let ((user-init-folder (merge-pathnames ".lem/"
+                                         (user-homedir-pathname))))
+  (load (merge-pathnames "simple-theme.lisp" user-init-folder)))
+
+(load-theme "simple-theme")

@@ -9,7 +9,7 @@
   (modeline :background "black" :foreground "white")
   (modeline-inactive :background "#101010" :foreground "#DFDFDF")
   (syntax-string-attribute :foreground nil)
-  (syntax-comment-attribute :foreground nil :bold-p t)
+  (syntax-comment-attribute :foreground nil :bold t)
   (syntax-keyword-attribute :foreground nil)
   (syntax-constant-attribute :foreground nil)
   (syntax-function-name-attribute :foreground nil)

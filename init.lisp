@@ -3,6 +3,14 @@
 (setf (variable-value 'Add-Newline-at-EOF-on-Writing-File :global) t)
 (setf (variable-value 'lem::Delete-Trailing-Whitespace-on-Writing-File :global) t)
 
+(define-command other-window-or-split-window (&optional (n 1)) ("p")
+  "Bring back this command"
+  (when (one-window-p)
+    (split-window-sensibly (current-window)))
+  (other-window n))
+
+(define-key *global-keymap* "C-M-o" 'other-window-or-split-window)
+
 (define-command backward-kill-line () ()
   "Kill line from point to beginning of line."
   (kill-line -0))
@@ -21,7 +29,7 @@
   (open-line n))
 
 (define-key *global-keymap* "C-o" 'open-line-below)
-(define-key *global-keymap* "M-C-o" 'open-line-above)
+(define-key *global-keymap* "M-o" 'open-line-above)
 
 (define-command kill-bword-or-region (&optional (n 1)) ("p")
   "Kill region if active, otherwise back n words."
